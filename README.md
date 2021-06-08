@@ -1,2 +1,2 @@
 # BIOME
-Beverage Inventory Order Management Environment
+Beverage Inventory & Order Management Environment
