@@ -1,28 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Login from './components/Login'
 import Signup from './components/Signup'
+import Navbar from './components/Navbar'
 import { Link, Switch, Route } from 'react-router-dom'
 import './App.css';
+import { useSelector, useDispatch } from 'redux'
 
-class App extends React.Component{
+function App () {
 
-  render(){
+const { isLoggedIn, setIsLoggedIn } = useState(false)
 
-    return( 
+    return ( 
     <div>
-      <h1> Welcome to BIOME </h1>
-      <Link to="/inventory">Your Inventory </Link>
+      { isLoggedIn === true ? <Navbar/> : ( 
+        <div>
+          <h1> Welcome to B.I.O.M.E.</h1>
+          <h3> Please Log In </h3>
+        </div>
+       )
+    }
+
       <Switch>
-        <Route path exact="/">
-          <Login/>
+        <Route exact path="/login">
+          <Login setIsLoggedIn= { setIsLoggedIn }/>
         </Route>
-        <Route path exact="/signup">
-          <Signup/>
+        <Route exact path="/signup">
+        <Signup/>
         </Route>
       </Switch>
     </div>
     )
   }
-}
+
 
 export default App;
