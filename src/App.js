@@ -45,10 +45,10 @@ let handleLoginClick = () => {
 
 
     return ( 
-    <div>
+    <div className="App">
       { isLoggedIn ? <Navbar/> : ( 
         <div>
-          <h1> Welcome to B.I.O.M.E.</h1>
+          <h1 className="heading" > Welcome to B.I.O.M.E.</h1>
           {loggingIn === true ? null : <Link to="/login" onClick={handleLoginClick}> Log In Here </Link>}
           
         </div>
@@ -57,13 +57,13 @@ let handleLoginClick = () => {
 
       <Switch>
         <Route exact path="/login">
-          <Login setIsLoggedIn= { setIsLoggedIn }/>
+          <Login setIsLoggedIn={ setIsLoggedIn }/>
         </Route>
         <Route exact path="/signup">
         <Signup/>
         </Route>
         <Route exact path="/inventory">
-          <Inventory/>
+          <Inventory />
         </Route>
       </Switch>
     </div>

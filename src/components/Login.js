@@ -10,6 +10,7 @@ function Login({ setIsLoggedIn }) {
 
     const[userNameInput, setUserNameInput] = useState("")
     const[passwordInput, setPasswordInput] = useState("")
+
     
     const dispatch = useDispatch()
 
@@ -49,7 +50,7 @@ function Login({ setIsLoggedIn }) {
     
 
     return (
-        <div>
+        <div className="login-wrapper">
             <Form className="login_form" onSubmit={handleLoginSubmit}>
                 <Form.Group controlId="loginUserName.ControlInput1" className="username_field">
                     <Form.Label> User Name </Form.Label>
