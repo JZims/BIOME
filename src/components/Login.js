@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 // import Modal from 'react-bootstrap/Modal'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
-function Login({ setIsLoggedIn }) {
+function Login() {
 
     const[userNameInput, setUserNameInput] = useState("")
     const[passwordInput, setPasswordInput] = useState("")
-
     
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
 
     const history = useHistory()
 
-    // const user = useSelector(state => state.user)
+   const isLoggedIn = useSelector(state => state.navigationReducer.isLoggedIn)
 
     const loginObj = {
         username: userNameInput, 
@@ -26,7 +25,7 @@ function Login({ setIsLoggedIn }) {
     function handleLoginSubmit(e){
         e.preventDefault()
 
-        fetch('http://localhost:3001/login', {
+        fetch('http://localhost:3000/login', {
             method: "POST", 
             headers: {
                 "Content-Type": "application/json"
@@ -37,20 +36,21 @@ function Login({ setIsLoggedIn }) {
         .then(res => {
             if(res.user) {
                 localStorage.token=res.token
-                localStorage.user= res.user
+                localStorage.setItem('user', JSON.stringify(res.user))
                 dispatch({type: "user_login", payload: res.user})
-                setIsLoggedIn(true)
-                
+                dispatch({type: "login", payload: true})
                 history.push('/inventory')
             } else {
                 alert("Username or Password is invalid. Please try again.")
             }
         })
+
     }
     
-
+    
     return (
         <div className="login-wrapper">
+            {isLoggedIn ? <Redirect to="/inventory"/> : null}
             <Form className="login_form" onSubmit={handleLoginSubmit}>
                 <Form.Group controlId="loginUserName.ControlInput1" className="username_field">
                     <Form.Label> User Name </Form.Label>

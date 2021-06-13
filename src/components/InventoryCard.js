@@ -1,13 +1,15 @@
 import React from 'react'
-
-function InventoryCard({beverage}) {
-
+import { useSelector } from 'react-redux'
 
 
+function InventoryCard() {
+
+  
+    
     return (
         <div>
-            <h1>{beverage.proprietary_name}</h1>
-            <h4>{beverage.vitage}</h4>
+            {/* <h1>{proprietary_name}</h1>
+            <h4>{vintage}</h4> */}
         </div>
     )
 }
