@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Navbar from './components/Navbar'
 import Inventory from './components/Inventory'
-import { Link, Switch, Route, useHistory, Redirect} from 'react-router-dom'
+import NewItem from './components/NewItem'
+import { Switch, Route, useHistory, Redirect} from 'react-router-dom'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
 
 
 function App () {
 
-// const [isLoggedIn, setIsLoggedIn] = useState(false)
-// const [loggingIn, setLoggingIn] = useState(false)
+  
+
+
 const isLoggingIn = useSelector(state => state.navigationReducer.isLoggingIn)
 const isLoggedIn = useSelector((state) => state.navigationReducer.isLoggedIn)
 
@@ -31,13 +35,13 @@ useEffect(() => {
     .then(res=> res.json())
     .then(res => { console.log(res)
         if (res){
-          dispatch({type: "user_login", payload: res.user}),
+          dispatch({type: "user_login", payload: res.user})
           dispatch({type: "login", payload: true})
+          return null
         } 
       })
     } else {
-      console.log("else"),
-      <Redirect to="/login"/>
+      return (<Redirect to="/login"/> )
       
     }
     

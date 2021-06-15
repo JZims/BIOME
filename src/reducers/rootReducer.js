@@ -3,7 +3,8 @@ import  navigationReducer  from './navigationReducer'
 
 
 let initialState = {
-    user: "not logged in"
+    user: "not logged in", 
+    beverages: []
 }
 
 
@@ -15,8 +16,12 @@ switch(action.type){
         return {
             ...state, user: action.payload
         }
+    case "populate_items":
+        return{
+            ...state, beverages: action.payload
+        }
     // case "update_item":
-    //     return{
+    //     return{s
 
     //     }
     // case "delete_item":
