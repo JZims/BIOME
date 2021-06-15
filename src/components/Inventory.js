@@ -40,6 +40,9 @@ function Inventory() {
         },[])
         
          if (beverageArray !== null){
+
+            
+
              const createBeverageCards = beverageArray.map(beverage => {
                return <InventoryCard 
                 key={beverage.id}
