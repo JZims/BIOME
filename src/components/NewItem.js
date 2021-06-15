@@ -2,9 +2,11 @@ import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { useDispatch } from 'react-redux'
 
 function NewItem(props) {
 
+const dispatch = useDispatch()
 
 const [producerName, setProducerName] = useState("")
 const [proprietaryName, setProprietaryName ] = useState("")
@@ -38,6 +40,7 @@ function handleNewItem(e){
         console.log(res)
         const bevId = res.id
         const userId = JSON.parse(localStorage.user).id
+        dispatch({type: "addItem", payload: res})
         fetch(`http://localhost:3000/inventory`, {
             method: "POST", 
             headers: {
@@ -46,8 +49,7 @@ function handleNewItem(e){
             }, body: JSON.stringify({beverage_id: bevId, user_id: userId})
         })
         .then(res => res.json())
-        .then(res => console.log(res)
-        )
+        .then(res => console.log(res))
 
 })
 }

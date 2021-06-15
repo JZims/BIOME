@@ -4,16 +4,19 @@ import InventoryCard from './InventoryCard'
 import Filter from './Filter'
 import { useSelector, useDispatch } from 'react-redux'
 
+
 function Inventory() {
     
     const dispatch = useDispatch()
     const user = useSelector(state => state.userReducer.user)
     const beverageArray = useSelector(state => state.userReducer.beverages)
+    
+
+   
 
     useEffect(() => {
         if(user === "not logged in" || beverageArray === null){
             return (
-                console.log("hi"),
                 <div>
                     <Link to='/login'>Please Log In to see your inventory</Link>
                 </div>
@@ -40,18 +43,21 @@ function Inventory() {
              const createBeverageCards = beverageArray.map(beverage => {
                return <InventoryCard 
                 key={beverage.id}
+                beverageId={beverage.id}
                 producer_name={beverage.producer_name}
                 proprietary_name={beverage.proprietary_name}
                 vintage={beverage.vintage}
                 category={beverage.category}
                 image_url={beverage.image_url}
-                bin={beverage.bin} /> 
+                bin={beverage.bin} 
+                
+                /> 
                 })
 
-         return (
+         return(
                 <div>
                 { createBeverageCards }
-                    <Filter/>
+                    <Filter />
                 </div>
             )    
 

@@ -17,6 +17,7 @@ function Filter() {
                <NewItem
                show={modalShow}
                onHide={() => setModalShow(false)}
+               
                />
         </div>
     )

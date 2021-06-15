@@ -24,14 +24,15 @@ switch(action.type){
     //     return{s
 
     //     }
-    // case "delete_item":
-    //     return{
+    case "delete_item":
+        return{
 
-    //     }
-    // case "add_item":
-    //     return{
-            
-    //     }
+        }
+    case "addItem":
+        return{
+            ...state, beverages: [...state.beverages, action.payload]
+        }
+    
     default:
         return state
 }
