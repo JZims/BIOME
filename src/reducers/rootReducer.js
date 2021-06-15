@@ -1,7 +1,14 @@
-let initialState = {user: "not logged in"}
+import { combineReducers } from 'redux'
+import  navigationReducer  from './navigationReducer'
 
 
-let rootReducer = (state = initialState, action) => {
+let initialState = {
+    user: "not logged in", 
+    beverages: []
+}
+
+
+let userReducer = (state = initialState, action) => {
 
 switch(action.type){
 
@@ -9,25 +16,28 @@ switch(action.type){
         return {
             ...state, user: action.payload
         }
-    case "update_item":
+    case "populate_items":
         return{
-
+            ...state, beverages: action.payload
         }
+    // case "update_item":
+    //     return{s
+
+    //     }
     case "delete_item":
         return{
 
         }
-    case "add_item":
+    case "addItem":
         return{
-            
+            ...state, beverages: [...state.beverages, action.payload]
         }
+    
     default:
         return state
 }
 
-
-
-    // return state
 }
+const rootReducer = combineReducers({userReducer, navigationReducer})
 
 export default rootReducer

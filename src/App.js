@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Navbar from './components/Navbar'
 import Inventory from './components/Inventory'
-import { Link, Switch, Route } from 'react-router-dom'
+import { Switch, Route, useHistory, Redirect} from 'react-router-dom'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
 
 
 function App () {
 
-const [isLoggedIn, setIsLoggedIn] = useState(false)
-const [loggingIn, setLoggingIn] = useState(false)
+  
 
-const userInfo = useSelector((state) => state.user)
+
+const isLoggingIn = useSelector(state => state.navigationReducer.isLoggingIn)
+const isLoggedIn = useSelector((state) => state.navigationReducer.isLoggedIn)
+
+const history = useHistory()
 
 const dispatch = useDispatch()
 
@@ -21,7 +26,7 @@ useEffect(() => {
 
   if(localStorage.token && localStorage.user) {
 
-    fetch(`http://localhost:3001/auto_login`, {
+    fetch(`http://localhost:3000/auto_login`, {
       headers:{
           "Authorization": `Bearer ${localStorage.token}`
       } 
@@ -30,26 +35,35 @@ useEffect(() => {
     .then(res => { console.log(res)
         if (res){
           dispatch({type: "user_login", payload: res.user})
+          dispatch({type: "login", payload: true})
+          return null
         } 
       })
     } else {
-      alert("Please Log In!")
+      return (<Redirect to="/login"/>)
       
     }
+    
   }, [])
 
+  const handleLogOut= () => {
+    dispatch({type: "logout", payload: false})
+    dispatch({type: 'persist', payload: false})
+    localStorage.clear()
+    history.push('./login')
+    }
   
-let handleLoginClick = () => {
-  setLoggingIn(state => !state)
+const handleLoginClick = () => {
+  dispatch({type: 'persist', payload: true})
 }
 
 
     return ( 
     <div className="App">
-      { isLoggedIn ? <Navbar/> : ( 
+      { isLoggedIn ? <Navbar handleLogOut={ handleLogOut }/> : ( 
         <div>
           <h1 className="heading" > Welcome to B.I.O.M.E.</h1>
-          {loggingIn === true ? null : <Link to="/login" onClick={handleLoginClick}> Log In Here </Link>}
+          {isLoggingIn === true ? null : <Redirect to="/login" onClick={handleLoginClick}> Log In Here </Redirect>}
           
         </div>
        )
@@ -57,7 +71,7 @@ let handleLoginClick = () => {
 
       <Switch>
         <Route exact path="/login">
-          <Login setIsLoggedIn={ setIsLoggedIn }/>
+          <Login/>
         </Route>
         <Route exact path="/signup">
         <Signup/>
