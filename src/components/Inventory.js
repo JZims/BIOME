@@ -8,10 +8,10 @@ import { useSelector, useDispatch } from 'react-redux'
 function Inventory() {
     
     const dispatch = useDispatch()
+
     const user = useSelector(state => state.userReducer.user)
     const beverageArray = useSelector(state => state.userReducer.beverages)
     
-
    
 
     useEffect(() => {
