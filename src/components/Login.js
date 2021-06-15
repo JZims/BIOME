@@ -50,23 +50,46 @@ function Login({ setIsLoggedIn }) {
     
 
     return (
-        <div className="login-wrapper">
-            <Form className="login_form" onSubmit={handleLoginSubmit}>
-                <Form.Group controlId="loginUserName.ControlInput1" className="username_field">
-                    <Form.Label> User Name </Form.Label>
-                    <br/>
-                    <Form.Control type="username" onChange={event => setUserNameInput(event.target.value)}/> 
-                </Form.Group>
-                   
-                <Form.Group controlId="loginPassword.ControlInput1" className="password_field">
-                    <Form.Label> Password </Form.Label>
-                    <br/>
-                    <Form.Control type="password" onChange={event => setPasswordInput(event.target.value)} /> 
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                 Submit
-                </Button>
-            </Form >
+        <div className="container-login100">
+            <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+                <Form className="login_form validate-form" onSubmit={handleLoginSubmit}>
+                <div className="login100-form-title p-b-49">
+                            Login
+                        </div>
+                    <Form.Group controlId="loginUserName.ControlInput1">
+                        <div className="wrap-input100 validate-input m-b-23">
+                            <Form.Label> User Name </Form.Label>
+                            <div className="input100">
+                            <Form.Control type="username" onChange={event => setUserNameInput(event.target.value)}/> 
+                        </div>
+                        </div>
+    
+                    </Form.Group>
+                    
+                    <Form.Group controlId="loginPassword.ControlInput1" className="password_field">
+                        <div className="wrap-input100 validate-input">
+                            <Form.Label> Password </Form.Label>
+                            <div className="input100">
+                            <Form.Control type="password" onChange={event => setPasswordInput(event.target.value)} /> 
+                        </div>
+                        </div>
+                
+                
+                    </Form.Group>
+                    <div className="text-right p-t-8 p-b-31">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <div className="container-login100-form-btn">
+                        <Button variant="primary" type="submit">
+                        Login
+                        </Button>
+                    </div>
+                    <div className="txt1 text-center p-t-54 p-b-20">
+                        <a href="#">Or Sign Up Here</a>
+                    </div>
+                    <div className="flex-col-c"></div>
+                </Form >
+            </div>
         </div>
     )
 }

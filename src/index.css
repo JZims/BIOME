@@ -15,18 +15,29 @@ code {
 /* APP-WIDE STYLING */
 
 * {
-  background-color: lightblue;
+  color:white;
+  background: purple;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body, #root {
-  margin: 0;
-  height: 100%;
+*, ::after, ::before {
+  box-sizing: inherit;
+} 
+
+body {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: white;
+  background-image: url("./imgs/background.png");
 }
+
 .App {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lightblue;
   height: 100%;
   width: 100%;
 }
@@ -35,39 +46,163 @@ html, body, #root {
   display: block;
     font-family: Poppins-Bold;
     font-size: 30px;
-    color: #333;
+    color: white;
     line-height: 1.2;
     text-align: center;
 }
 
-h1, form, label, input {
+input {
+  color: black;
+  background: white;
+}
+
+div {
+  display:block; 
+}
+
+button {
+  color: black;
   background-color: white;
+  border-radius: 15px;
+  padding: 10px 20px 10px 20px;
 }
 
 /* LOGIN PAGE */
 
-.login-wrapper {
-    width: 224px;
-    height: 338px;
-    background: white;
-    border-radius: 10px;
+.login_form  {
+  background: purple;
+
+}
+
+.container-login100 {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("./imgs/background.png");
+    border-radius: 20px;
     overflow: hidden;
-    padding: 10px 10px 10px 10px;
     box-shadow: 0px 5px grey;
 
 }
 
-.login-wrapper form {
+
+.container-login100 form {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
-.login-wrapper input {
-  width: 50%;
+.container-login100 input {
+  width: 100%;
 }
+
+.m-b-23 {
+  margin-bottom: 23px;
+}
+
+
+.wrap-input100 {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #d9d9d9;
+  color:white;
+  background: purple;
+}
+
+.wrap-login100 {
+  height: 70vh;
+  width: 200px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  color:white;
+  background: purple;
+}
+
+
+
+.validate-input {
+  position: relative;
+}
+
+.login100-form {
+  width: 100%;
+}
+
+.login100-form-title {
+  display: block;
+  font-family: Poppins-Bold;
+  font-size: 39px;
+  color:white;
+  background: purple;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.form-group {
+  color:white;
+  background: purple;
+}
+
+.p-t-8 {
+  padding-top: 8px;
+}
+.p-r-55 {
+  padding-right: 55px;
+}
+
+.p-l-55 {
+  padding-left: 55px;
+}
+
+.p-b-54 {
+  padding-bottom: 54px;
+}
+
+.p-b-49 {
+  padding-bottom: 49px;
+}
+
+.p-b-31 {
+  padding-bottom: 31px;
+}
+
+.p-t-65 {
+  padding-top: 65px;
+}
+
+.m-b-23 {
+  margin-bottom: 23px;
+}
+
+.text-right {
+  text-align: right!important;
+}
+
+.container-login100-form-btn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+}
+
+.flex-col-c {
+  padding-top: 155px;
+}
+
+.p-10-20-10-20 {
+  padding: 10px 20px 10px 20px;
+}
+
 
 /* NAVBAR STYLING */ 
 
