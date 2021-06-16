@@ -55,7 +55,7 @@ function Inventory() {
                 })
 
          return(
-                <div>
+                <div className="inventory-wrapper">
                 { createBeverageCards }
                     <Filter />
                 </div>

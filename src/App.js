@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Login from './components/Login'
 import Signup from './components/Signup'
