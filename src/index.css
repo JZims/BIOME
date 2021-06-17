@@ -244,7 +244,8 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid #CF6FE7;
+  background-color: #C4AB8C;
+  border: 2px solid black;
   border-radius: 10px;
   height: 350px;
   width: 200px;
@@ -252,6 +253,9 @@ button {
   margin-bottom: 10px;
   margin-right: 10px;
   margin-left: 10px;
+
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
 }
 
 .beverage_card img {
@@ -261,4 +265,12 @@ button {
 .beverage_card button {
   margin-top: auto;
   margin-bottom: 10px;
+}
+
+.beverage_card img, h3, h4, p {
+  background: #C4AB8C;
+}
+
+img {
+  border-radius: 15px;
 }
