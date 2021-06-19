@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Login from './components/Login'
 import Signup from './components/Signup'
-import Navbar from './components/Navbar'
+import Nav from './components/Nav'
 import Inventory from './components/Inventory'
 import { Switch, Route, useHistory, Redirect} from 'react-router-dom'
 import './App.css';
@@ -60,7 +60,7 @@ const handleLoginClick = () => {
 
     return ( 
     <div className="App">
-      { isLoggedIn ? <Navbar handleLogOut={ handleLogOut }/> : ( 
+      { isLoggedIn ? <Nav handleLogOut={ handleLogOut }/> : ( 
         <div>
           <h1 className="heading" > Welcome to B.I.O.M.E.</h1>
           {isLoggingIn === true ? null : <Redirect to="/login" onClick={handleLoginClick}> Log In Here </Redirect>}
