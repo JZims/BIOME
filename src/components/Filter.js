@@ -1,24 +1,32 @@
 import React, { useState } from 'react'
 import NewItem from './NewItem';
 import Button from 'react-bootstrap/Button'
+import Navbar from 'react-bootstrap/Navbar'
+import Container from 'react-bootstrap/Container'
 
 
 function Filter() {
 
-    const [modalShow, setModalShow] = useState(false);
+        const [newItemModalShow, setNewItemModalShow] = useState(false);
 
     return (
-        <div> 
-        <h3>Filter</h3>
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-               Add New Item
-           </Button>
-   
-               <NewItem
-               show={modalShow}
-               onHide={() => setModalShow(false)}
-               
-               />
+        <div className="filter"> 
+                
+            <Navbar fixed="bottom">
+            <Container className="navbar-container">
+                <Button variant="primary" onClick={() => setNewItemModalShow(true)}>
+                Add New Item
+                 </Button>
+    
+                <NewItem
+                show={newItemModalShow}
+                onHide={() => setNewItemModalShow(false)}
+                />
+            </Container>
+            </Navbar>
+            
+
+         
         </div>
     )
 }

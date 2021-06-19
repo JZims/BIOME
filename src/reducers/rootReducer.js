@@ -26,7 +26,7 @@ switch(action.type){
     //     }
     case "delete_item":
         return{
-
+             ...state, beverages: action.payload   
         }
     case "addItem":
         return{
