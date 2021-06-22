@@ -1,5 +1,6 @@
 import React, { useState }from 'react'
 import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Modal from 'react-bootstrap/Modal'
 import { useSelector, useDispatch } from 'react-redux'
@@ -99,7 +100,7 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
     
     return (
         <div className="beverage_card">
-            <img src={image_url} alt={proprietary_name} className="beverage_image"/>
+            <Image src="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png" alt={proprietary_name} className="beverage_image" fluid/>
             <h3>{proprietary_name}</h3>
             <h4>{producer_name}</h4>
             <p>Vintage: {vintage}</p>

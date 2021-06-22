@@ -1,15 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
+import Badge from 'react-bootstrap/Badge'
 // import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 import { useSelector } from 'react-redux'
-
 import Manifest from './Manifest'
 
 function Nav({handleLogOut}) {
 
     const isLoggedIn = useSelector((state) => state.navigationReducer.isLoggedIn)
+    const itemsInManifest = useSelector((state) => state.manifestReducer.itemsToChange)
+
+    const [showManifest, setShowManifest] = useState(false)
     
 
     return (
@@ -29,13 +32,14 @@ function Nav({handleLogOut}) {
                 />
                  
                 </Navbar.Brand>
-                <button type="button" onClick={handleLogOut}> Log Out </button> 
-                <Manifest/>
+                <Button type="button" size="sm" onClick={handleLogOut}> Log Out </Button> 
+                <Button type="button" onClick={() => setShowManifest(true)}> Manifest <Badge bg="success">{itemsInManifest.length}</Badge></Button>
+                <Manifest show={showManifest} onHide={() => setShowManifest(false)}/>
             </Container>
             </Navbar>
             
             </div>
-            : null 
+            : null  
             }
         
        

@@ -46,7 +46,7 @@ function Inventory({setAddToManifest}) {
             
 
              const createBeverageCards = beverageArray.map(beverage => {
-
+                console.log(beverage)
                return <InventoryCard 
                 key={beverage.id}
                 beverageId={beverage.id}
@@ -56,7 +56,7 @@ function Inventory({setAddToManifest}) {
                 category={beverage.category}
                 image_url={beverage.image_url}
                 bin={beverage.bin}
-                quantity={beverage.inventories.quantity}
+                quantity={beverage.inventories[0].quantity}
                 setAddToManifest = {setAddToManifest}
                
                 /> 

@@ -2,11 +2,13 @@ import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function NewItem(props) {
 
 const dispatch = useDispatch()
+
+const userId = useSelector(state => state.userReducer.user.id)
 
 const [producerName, setProducerName] = useState("")
 const [proprietaryName, setProprietaryName ] = useState("")
@@ -15,15 +17,18 @@ const [imageUrl, setImageUrl] = useState("")
 const [newCategory, setNewCategory] = useState("")
 const [newBin, setNewBin] = useState(0)
 
+console.log(userId)
 const newBeverageItem = {
     producer_name: producerName, 
     proprietary_name: proprietaryName,
     vintage: vintage, 
     image_url: imageUrl, 
     category: newCategory,
-    bin: newBin
+    bin: newBin,
+    user_id: userId, 
+    quantity: 1
 }
- console.log(newCategory)
+
 
 function handleNewItem(e){
     e.preventDefault()
@@ -35,21 +40,38 @@ function handleNewItem(e){
             "Authorization": `Bearer ${localStorage.token}`
         }, body: JSON.stringify(newBeverageItem)
     })
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-        const bevId = res.id
-        const userId = JSON.parse(localStorage.user).id
-        dispatch({type: "addItem", payload: res})
-        fetch(`http://localhost:3000/inventory`, {
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/json", 
-                "Authorization": `Bearer ${localStorage.token}`
-            }, body: JSON.stringify({beverage_id: bevId, user_id: userId})
-        })
-        .then(res => res.json())
-        .then(res => console.log(res))
+    .then(beverageResults => beverageResults.json())
+    .then(beverageResults => {
+        console.log(beverageResults)
+        const rebuiltObj = { 
+            id: beverageResults.beverage.id, 
+            proprietary_name: beverageResults.beverage.proprietary_name, 
+            producer_name: beverageResults.beverage.producer_name, 
+            vintage: beverageResults.beverage.vintage, 
+            image_url: beverageResults.beverage.image_url, 
+            bin: beverageResults.beverage.bin, 
+            inventories: beverageResults.inventories
+
+        }
+
+        dispatch({type: "addItem", payload: rebuiltObj})
+
+
+        // fetch(`http://localhost:3000/inventory`, {
+        //     method: "POST", 
+        //     headers: {
+        //         "Content-Type": "application/json", 
+        //         "Authorization": `Bearer ${localStorage.token}`
+        //     }, body: JSON.stringify({beverage_id: bevId, user_id: userId, quantity: 1})
+        // })
+        // .then(inventoryResults => inventoryResults.json())
+        // .then(inventoryResults => {
+        //  console.log(inventoryResults)
+
+        // //  dispatch({type: "addItem", payload: inventoryResults})
+        //  
+
+        // })
 
 })
 }
@@ -62,7 +84,7 @@ return (
       aria-labelledby="contained-modal-title-vcenter"
       centered
         >
-      <Modal.Header closeButton>
+      <Modal.Header >
         <Modal.Title id="contained-modal-title-vcenter">
           Add a New Item
         </Modal.Title>

@@ -54,7 +54,7 @@ useEffect(() => {
   const handleLoginClick = () => {
     dispatch({type: 'persist', payload: true})
   }
-    console.log(addToManifest)
+  
 
     return ( 
     <div className="App">
