@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import  navigationReducer  from './navigationReducer'
+import navigationReducer from './navigationReducer'
+import manifestReducer from './manifestReducer'
 
 
 let initialState = {
@@ -21,11 +22,12 @@ switch(action.type){
             ...state, beverages: action.payload
         }
     // case "update_item":
-    //     return{s
+    //     return{
+    //         ...state, beverages: action.payload
 
     //     }
     case "delete_item":
-        return{
+        return {
              ...state, beverages: action.payload   
         }
     case "addItem":
@@ -38,6 +40,6 @@ switch(action.type){
 }
 
 }
-const rootReducer = combineReducers({userReducer, navigationReducer})
+const rootReducer = combineReducers({userReducer, navigationReducer, manifestReducer})
 
 export default rootReducer

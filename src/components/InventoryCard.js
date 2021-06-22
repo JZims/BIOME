@@ -6,10 +6,15 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 
-function InventoryCard({beverageId, proprietary_name, producer_name, vintage, category, image_url, bin}) {
+function InventoryCard({beverageId, proprietary_name, producer_name, vintage, category, image_url, bin, quantity}) {
 
+    
     const [deleteAlert, setDeleteAlert] = useState(false)
+    const [itemCount, setItemCount] = useState(0)
+
+    const manifestArray = useSelector(state => state.manifestReducer.itemsToChange)
     const beverageArray = useSelector(state => state.userReducer.beverages)
+    // const itemCount = useSelector(state => state.manifestReducer.itemCount)
     const dispatch = useDispatch()
 
     const handleClose = () => setDeleteAlert(false);
@@ -34,6 +39,63 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
         })
     }
 
+    function handleAddToManifest(){
+        if(itemCount >= 0){
+            setItemCount(value => value + 1)
+            handleManifestObj()
+            // dispatch({type: "addition", payload: itemCount + 1})
+        } else { 
+            setItemCount(value => value=1)
+            handleManifestObj()
+            // dispatch({type: "addition", payload: 1})
+        }
+        console.log(itemCount)
+       
+    }
+
+    function handleSubtractFromManifest(){
+        if(itemCount <= 0){
+            setItemCount(value => value -1)
+            handleManifestObj()
+            // dispatch({type: "subtraction", payload: itemCount - 1})
+        } else { 
+            setItemCount(value => value= -1)
+            handleManifestObj()
+            // dispatch({type: "subtraction", payload: -1})
+            console.log(itemCount)
+        }
+
+        
+    }
+
+    function handleManifestObj(){
+
+        const findObjInManifest = manifestArray.filter(obj => obj.beverageId === beverageId)
+
+        if(findObjInManifest.length > 0) {
+                const checkForExistingItem = manifestArray.map(obj => {
+                    if (obj.beverageId === beverageId){
+                         obj.quantity_change=itemCount 
+                         return obj
+                } else {return obj}
+        })
+        
+            dispatch({type: "update_item", payload: checkForExistingItem})
+        } else {
+                const newObj = {
+                beverageId: beverageId,
+                producer_name: producer_name, 
+                proprietary_name: proprietary_name, 
+                quantity_change: itemCount
+            }
+            console.log(newObj)
+                dispatch({type: "add_new", payload: newObj})
+            
+        }
+        
+        
+    }
+
     
     return (
         <div className="beverage_card">
@@ -42,6 +104,11 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
             <h4>{producer_name}</h4>
             <p>Vintage: {vintage}</p>
             <p>BIN #: {bin}</p>
+            <p>Qty: {quantity} </p>
+            <ButtonGroup aria-label="add/delete">
+                <Button size="sm" onClick={handleAddToManifest}>+</Button>
+                <Button size="sm" onClick={handleSubtractFromManifest}>-</Button>
+            </ButtonGroup>
             <Button onClick={ handleShow }> Delete Item </Button>
 
             <Modal show={deleteAlert} onHide={handleClose}>

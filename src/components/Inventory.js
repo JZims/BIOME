@@ -5,7 +5,9 @@ import Filter from './Filter'
 import { useSelector, useDispatch } from 'react-redux'
 
 
-function Inventory() {
+function Inventory({setAddToManifest}) {
+
+    
     
     const dispatch = useDispatch()
     const user = useSelector(state => state.userReducer.user)
@@ -44,6 +46,7 @@ function Inventory() {
             
 
              const createBeverageCards = beverageArray.map(beverage => {
+
                return <InventoryCard 
                 key={beverage.id}
                 beverageId={beverage.id}
@@ -52,8 +55,10 @@ function Inventory() {
                 vintage={beverage.vintage}
                 category={beverage.category}
                 image_url={beverage.image_url}
-                bin={beverage.bin} 
-                
+                bin={beverage.bin}
+                quantity={beverage.inventories.quantity}
+                setAddToManifest = {setAddToManifest}
+               
                 /> 
                 })
 

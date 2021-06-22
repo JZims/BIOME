@@ -9,7 +9,7 @@ const navigationReducer= (state = initialState, action ) => {
  
         case "login":
             return {
-            ...state, isLoggedIn: action.payload
+                ...state, isLoggedIn: action.payload
         }
         case "logout":
             return {

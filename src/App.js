@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Nav from './components/Nav'
@@ -11,8 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 function App () {
 
-  
-
+const [addToManifest, setAddToManifest] = useState([])
 
 const isLoggingIn = useSelector(state => state.navigationReducer.isLoggingIn)
 const isLoggedIn = useSelector((state) => state.navigationReducer.isLoggedIn)
@@ -52,10 +51,10 @@ useEffect(() => {
     history.push('./login')
     }
   
-const handleLoginClick = () => {
-  dispatch({type: 'persist', payload: true})
-}
-
+  const handleLoginClick = () => {
+    dispatch({type: 'persist', payload: true})
+  }
+    console.log(addToManifest)
 
     return ( 
     <div className="App">
@@ -76,7 +75,7 @@ const handleLoginClick = () => {
         <Signup/>
         </Route>
         <Route exact path="/inventory">
-          <Inventory />
+          <Inventory setAddToManifest={setAddToManifest}/>
         </Route>
       </Switch>
     </div>
