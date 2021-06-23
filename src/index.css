@@ -20,7 +20,7 @@ code {
 
 * {
   color:white;
-  background: purple;
+  /* background: purple; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -48,6 +48,7 @@ body {
 
 .heading {
   display: block;
+  background: purple;
     font-family: Poppins-Bold;
     font-size: 30px;
     color: white;
@@ -234,6 +235,7 @@ button {
 .inventory-wrapper {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 200px;
   flex-direction: row;
   align-items: center;
   justify-content: center;

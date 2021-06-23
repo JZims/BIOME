@@ -21,11 +21,11 @@ switch(action.type){
         return{
             ...state, beverages: action.payload
         }
-    // case "update_item":
-    //     return{
-    //         ...state, beverages: action.payload
+    case "update_beverages":
+        return{
+            ...state, beverages: action.payload
 
-    //     }
+        }
     case "delete_item":
         return {
              ...state, beverages: action.payload   
