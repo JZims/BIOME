@@ -8,12 +8,6 @@ const manifestReducer = (state= initialState, action) => {
 
     switch (action.type) {
 
-        case "addition":
-            return { ...state, itemCount: action.payload }
-
-        case "subtraction":
-                return { ...state, itemCount: action.payload }
-
         case "update_item":
             //updates the quantity attribute of the existing item
             return { ...state, itemsToChange: action.payload }

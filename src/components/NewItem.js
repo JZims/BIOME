@@ -43,7 +43,7 @@ function handleNewItem(e){
     .then(beverageResults => beverageResults.json())
     .then(beverageResults => {
         console.log(beverageResults)
-        const rebuiltObj = { 
+        const rebuiltObj = {  
             id: beverageResults.beverage.id, 
             proprietary_name: beverageResults.beverage.proprietary_name, 
             producer_name: beverageResults.beverage.producer_name, 
@@ -51,27 +51,9 @@ function handleNewItem(e){
             image_url: beverageResults.beverage.image_url, 
             bin: beverageResults.beverage.bin, 
             inventories: beverageResults.inventories
-
         }
 
         dispatch({type: "addItem", payload: rebuiltObj})
-
-
-        // fetch(`http://localhost:3000/inventory`, {
-        //     method: "POST", 
-        //     headers: {
-        //         "Content-Type": "application/json", 
-        //         "Authorization": `Bearer ${localStorage.token}`
-        //     }, body: JSON.stringify({beverage_id: bevId, user_id: userId, quantity: 1})
-        // })
-        // .then(inventoryResults => inventoryResults.json())
-        // .then(inventoryResults => {
-        //  console.log(inventoryResults)
-
-        // //  dispatch({type: "addItem", payload: inventoryResults})
-        //  
-
-        // })
 
 })
 }

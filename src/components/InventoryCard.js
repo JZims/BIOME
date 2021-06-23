@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 
 
-function InventoryCard({beverageId, proprietary_name, producer_name, vintage, category, image_url, bin, quantity}) {
+    function InventoryCard({beverageId, proprietary_name, producer_name, vintage, category, image_url, bin, quantity, inventories}) {
 
     
     const [deleteAlert, setDeleteAlert] = useState(false)
@@ -15,7 +15,8 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
 
     const manifestArray = useSelector(state => state.manifestReducer.itemsToChange)
     const beverageArray = useSelector(state => state.userReducer.beverages)
-    // const itemCount = useSelector(state => state.manifestReducer.itemCount)
+    const userInfo = useSelector(state => state.userReducer.user )
+    
     const dispatch = useDispatch()
 
     const handleClose = () => setDeleteAlert(false);
@@ -46,7 +47,7 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
             handleManifestObj()
             // dispatch({type: "addition", payload: itemCount + 1})
         } else { 
-            setItemCount(value => value=1)
+            setItemCount(1)
             handleManifestObj()
             // dispatch({type: "addition", payload: 1})
         }
@@ -69,9 +70,10 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
         
     }
 
-    function handleManifestObj(){
+    const handleManifestObj = function(){
 
         const findObjInManifest = manifestArray.filter(obj => obj.beverageId === beverageId)
+        const findInventory = inventories.filter(obj => obj.user_id === userInfo.id)
 
         if(findObjInManifest.length > 0) {
                 const checkForExistingItem = manifestArray.map(obj => {
@@ -84,6 +86,7 @@ function InventoryCard({beverageId, proprietary_name, producer_name, vintage, ca
             dispatch({type: "update_item", payload: checkForExistingItem})
         } else {
                 const newObj = {
+                inventoryId: findInventory[0].id, 
                 beverageId: beverageId,
                 producer_name: producer_name, 
                 proprietary_name: proprietary_name, 

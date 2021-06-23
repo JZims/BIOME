@@ -8,7 +8,11 @@ import {useSelector, useDispatch} from 'react-redux'
 
 function Manifest(props) {
 
-const manifestItemArray = useSelector(state => state.manifestReducer.itemsToChange)
+const manifestItemArray=useSelector(state => state.manifestReducer.itemsToChange)
+// const allUserBeverageArray=useSelector(state => state.userReducer.beverages)
+
+const dispatch = useDispatch()
+
 
 const manifestItems = manifestItemArray.map(item => {
      return( 
@@ -20,9 +24,34 @@ const manifestItems = manifestItemArray.map(item => {
     )
     })
  
+
     function handleSubmitManifest(){
-        console.log("hi")
-    }
+
+        return (
+                manifestItemArray.map(itemToUpdate => {
+                    console.log(itemToUpdate.beverageId)
+                fetch(`http://localhost:3000/inventories/${itemToUpdate.inventoryId}`, {
+                    method: "PATCH", 
+                    headers: {
+                        "Content-Type": "Application/json", 
+                        "Authorization": `Bearer ${localStorage.token}`
+                    }, body: JSON.stringify({quantity: itemToUpdate.quantity_change})
+                })
+                .then(res => res.json())
+                .then(newInv => {
+                    console.log(newInv)
+                    dispatch({type: "update_beverages", payload: newInv})
+                    dispatch({type: "update_item", payload: []})
+                    props.onHide()
+                    // const newInvArray = [newInv]
+                    // const locatedBeverage = allUserBeverageArray.filter(obj => obj.id === itemToUpdate.beverageId )
+                    // const updatedInventories = locatedBeverage[0].inventories.map(obj => newInvArray.find(o => o.id === obj.id) || obj)
+                
+              })
+            }
+          )  
+        )     
+      }
 
 
     return (
