@@ -103,17 +103,31 @@ import { useSelector, useDispatch } from 'react-redux'
     
     return (
         <div className="beverage_card">
-            <Image src="https://westsiderc.org/wp-content/uploads/2019/08/Image-Not-Available.png" alt={proprietary_name} className="beverage_image" fluid/>
-            <h3>{proprietary_name}</h3>
-            <h4>{producer_name}</h4>
-            <p>Vintage: {vintage}</p>
-            <p>BIN #: {bin}</p>
-            <p>Qty: {quantity} </p>
-            <ButtonGroup aria-label="add/delete">
-                <Button size="sm" onClick={handleAddToManifest}>+</Button>
-                <Button size="sm" onClick={handleSubtractFromManifest}>-</Button>
-            </ButtonGroup>
-            <Button onClick={ handleShow }> Delete Item </Button>
+            <div className="card_details">
+                <div className="beverage_image">
+                    <Image src={image_url} alt={proprietary_name} fluid/>
+                </div>
+             <div className="card_text">
+                <h2>{proprietary_name}</h2>
+                <h3>{producer_name}</h3>
+                <p>Vintage: {vintage}</p>
+                <p>BIN #: {bin}</p>
+                <p>Qty: {quantity} </p>
+                <div className="card_button">
+                    <ButtonGroup aria-label="add/delete">
+                    <Button size="sm" onClick={handleAddToManifest}>+</Button>
+                    <Button size="sm" onClick={handleSubtractFromManifest}>-</Button>
+                    <Button onClick={ handleShow }>Delete</Button>
+                    </ButtonGroup>
+                </div>
+            </div>
+            
+            
+        </div>
+           
+            
+            
+            
 
             <Modal show={deleteAlert} onHide={handleClose}>
             <Modal.Header>

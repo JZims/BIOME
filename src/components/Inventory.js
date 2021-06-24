@@ -12,7 +12,7 @@ function Inventory({setAddToManifest}) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.userReducer.user)
     const beverageArray = useSelector(state => state.userReducer.beverages)
-    
+    const itemQuantity = []
 
    
 
@@ -38,29 +38,34 @@ function Inventory({setAddToManifest}) {
                 
                 dispatch({type: "populate_items", payload: res})
             })
+
         }
         },[])
         
          if (beverageArray !== null){
 
-            
-
              const createBeverageCards = beverageArray.map(beverage => {
+
                const userInventory = beverage.inventories.filter(obj => obj.user_id === user.id )
-               return <InventoryCard 
-                key={beverage.id}
-                beverageId={beverage.id}
-                producer_name={beverage.producer_name}
-                proprietary_name={beverage.proprietary_name}
-                vintage={beverage.vintage}
-                category={beverage.category}
-                image_url={beverage.image_url}
-                bin={beverage.bin}
-                quantity={userInventory[0].quantity}
-                setAddToManifest = {setAddToManifest}
-                inventories = {beverage.inventories}
                
-                /> 
+               return (
+                  
+                <InventoryCard 
+                    key={beverage.id}
+                    beverageId={beverage.id}
+                    producer_name={beverage.producer_name}
+                    proprietary_name={beverage.proprietary_name}
+                    vintage={beverage.vintage}
+                    category={beverage.category}
+                    image_url={beverage.image_url}
+                    bin={beverage.bin}
+                    quantity={userInventory ? userInventory[0].quantity : itemQuantity}
+                    setAddToManifest = {setAddToManifest}
+                    inventories = {beverage.inventories}
+                    />
+                 
+                 )
+              
                 })
 
          return(

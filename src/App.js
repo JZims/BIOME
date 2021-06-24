@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Nav from './components/Nav'
@@ -7,6 +6,7 @@ import Inventory from './components/Inventory'
 import { Switch, Route, useHistory, Redirect} from 'react-router-dom'
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 function App () {

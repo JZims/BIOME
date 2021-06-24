@@ -18,11 +18,16 @@ const manifestItems = manifestItemArray.map(item => {
      return( 
             <Row>
             <Col xs={12} >
-              <p>{item.proprietary_name}, {item.producer_name} -------  {item.quantity_change}</p>
+              <p className="manifest_item_text">{item.proprietary_name}, {item.producer_name} -------  {item.quantity_change}</p>
             </Col>
              </Row>
     )
     })
+
+    function clearManifest(){
+        dispatch({type: "update_item", payload: []})
+        props.onHide()
+    }
  
 
     function handleSubmitManifest(){
@@ -55,7 +60,7 @@ const manifestItems = manifestItemArray.map(item => {
 
 
     return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" id="manifest">
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
          Daily Manifest
@@ -68,6 +73,7 @@ const manifestItems = manifestItemArray.map(item => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={clearManifest}>Clear Manifest</Button>
         <Button onClick={handleSubmitManifest}>Submit</Button>
       </Modal.Footer>
     </Modal>

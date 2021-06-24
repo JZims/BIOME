@@ -12,9 +12,9 @@ function Filter() {
     return (
         <div className="filter"> 
                 
-            <Navbar fixed="bottom">
+            <Navbar fixed="bottom" id="bottom_nav">
             <Container className="navbar-container">
-                <Button variant="primary" onClick={() => setNewItemModalShow(true)}>
+                <Button variant="primary" onClick={() => setNewItemModalShow(true)} class="button">
                 Add New Item
                  </Button>
     

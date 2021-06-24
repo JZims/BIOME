@@ -32,6 +32,7 @@ code {
 
 body {
   font-size: 1.25rem;
+  margin-bottom: 200px;
   font-weight: 400;
   line-height: 1.5;
   color: white;
@@ -48,7 +49,7 @@ body {
 
 .heading {
   display: block;
-  background: purple;
+  background: #501B1D;
     font-family: Poppins-Bold;
     font-size: 30px;
     color: white;
@@ -65,12 +66,12 @@ div {
   display:block; 
 }
 
-button {
+/* button {
   color: black;
   background-color: white;
   border-radius: 15px;
   padding: 10px 20px 10px 20px;
-}
+} */
 
 /* LOGIN PAGE STYLING      *
 *                          *
@@ -79,7 +80,7 @@ button {
 ***************************/
 
 .login_form  {
-  background: purple;
+  background: #501B1D;
 
 }
 
@@ -124,7 +125,7 @@ button {
   position: relative;
   border-bottom: 2px solid #d9d9d9;
   color:white;
-  background: purple;
+  background: #501B1D;
 }
 
 .wrap-login100 {
@@ -134,7 +135,7 @@ button {
   border-radius: 20px;
   overflow: hidden;
   color:white;
-  background: purple;
+  background: #501B1D;
 }
 
 
@@ -152,14 +153,14 @@ button {
   font-family: Poppins-Bold;
   font-size: 39px;
   color:white;
-  background: purple;
+  background: #501B1D;
   line-height: 1.2;
   text-align: center;
 }
 
 .form-group {
   color:white;
-  background: purple;
+  background: #501B1D;
 }
 
 .p-t-8 {
@@ -232,37 +233,25 @@ button {
 ***************************/
 
 
-.inventory-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 200px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+
+
+.inventory_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    height: 620px;
+    width: 800px;
+    margin: 50px auto;
+    border-radius: 7px 7px 7px 7px;
+    /* VIA CSS MATIC https://goo.gl/cIbnS */
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
 }
 
 .beverage_card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #C4AB8C;
-  border: 2px solid black;
-  border-radius: 10px;
-  height: 350px;
-  width: 200px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
 
-  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
-box-shadow: 5px 5px 15px 5px #000000;
 }
 
-.beverage_card img {
-  padding: 10px 10px 10px 10px;
-}
 
 .beverage_card button {
   margin-top: auto;
@@ -273,6 +262,154 @@ box-shadow: 5px 5px 15px 5px #000000;
   background: #C4AB8C;
 }
 
-img {
-  border-radius: 15px;
+.beverage_image {
+  float: left;
+  padding: 10px 10px 10px 10px;
+  height: 220px;
+  width: 127px;
+}
+.beverage_image img {
+  border-radius: 7px 0 0 20px;
+
+}
+ .card_details {
+  float: left;
+  height: 420px;
+  width: 327px;
+  margin: 100px 25px 0px 50px;
+  border: 2px solid black;
+  border-radius: 0 7px 10px 7px;
+  background-color: #ffffff;
+}
+
+.card_text {
+  height: 300px;
+  width: 327px;
+}
+
+ h2 {
+  margin: 0 0 0 45px;
+  padding-top: 52px;
+  font-size: 34px;
+  color: #474747;
+  font-family: 'Bentham', serif;
+
+}
+
+.card_text h3 {
+  margin: 25px 0 47px 38px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+}
+
+.card_text p {
+  margin: 20 0 0 50px;
+  width: 250px;
+  font-family: 'Playfair Display', serif;
+  line-height: 1.7em;
+  font-size: 15px;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.card_button {
+margin-bottom: 10px;
+}
+
+
+.card_button button {
+  display: inline-block;
+  height: 25px;
+  width: 100px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 60px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+  background-color: tomato;
+  cursor: pointer;
+  outline: none;
+}
+
+.card_button button:hover {
+  background-color: #79b0a1;
+}
+
+/* MODAL STYLING *
+*                          *
+*                          *
+*                          *
+***************************/
+
+#manifest .modal-content {
+  background: #ADADAD;
+
+}
+
+#contained-modal-title-vcenter {
+  color: #501B1D
+}
+
+.manifest_item_text{
+  color: black;
+  background: #ADADAD;
+}
+
+
+.new_item{
+  background-color: #ADADAD;
+  color: black;
+}
+
+.new_item > div{
+  background-color: #ADADAD;
+  color: black;
+}
+
+
+.btn-primary {
+  
+}
+
+#bottom_nav {
+  width: fit-content;
+  left: auto;
+}
+
+.btn-primary{
+  background-color: #83677B !important;
+  border-color: thistle !important;
+}
+
+.modal-header{
+background-color: #ADADAD !important;
+}
+.modal-body{
+  background-color: #ADADAD !important;
+ 
+}
+
+.modal-footer{
+  background-color: #ADADAD !important;
+}
+
+.modal-body .form-label{
+ color: black !important;
+}
+
+#newItemCategory > option{
+  color:black;
+  background-color: #ADADAD;
+}
+
+#newItemCategory.custom-select {
+  color: black;
 }
