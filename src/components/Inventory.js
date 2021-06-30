@@ -47,7 +47,7 @@ function Inventory({setAddToManifest}) {
              const createBeverageCards = beverageArray.map(beverage => {
 
                const userInventory = beverage.inventories.filter(obj => obj.user_id === user.id )
-               
+               console.log(userInventory)
                return (
                   
                 <InventoryCard 
