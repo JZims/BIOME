@@ -12,3 +12,7 @@ Future goals include:
  - CSV upload to inventory
  - A "Well" UI for monitoring open bottles behind the bar
  - A dynamic BIN system for keeping stock organized and accounted for
+
+
+Backend Repo:
+https://github.com/JZims/BIOME-backend
